@@ -1,5 +1,8 @@
+import '../css/main.css';
 import $ from 'jquery';
 import _ from 'lodash';
+
+let counter = 0;
 
 $(document).ready(function() {
     // Add elements to the DOM
@@ -9,15 +12,9 @@ $(document).ready(function() {
     $('body').append('<p id="count"></p>');
     $('body').append('<p>Copyright - Holberton School</p>');
 
-    const updateCounter = () => {
-      let times = $('#count').html() || 0;
-      $('button').on('click', () => {
-        times++;
-        $('#count').html(`${times} clicks on the button`);
-  });
-};
+    function updateCounter() {
+      counter++;
+      $('#count').html(`${counter} clicks on the button`);
+}
 
-_.debounce(updateCounter, 500);
-updateCounter();
-    });
-});
+$("button").on("click", _.debounce(updateCounter, 500));
