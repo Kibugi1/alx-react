@@ -1,19 +1,6 @@
 import $ from 'jquery';
 import _ from 'lodash';
 
-// Counter to track button clicks
-let count = 0;
-
-// Function to update counter and display the count
-function updateCounter() {
-    count++;
-    $('#count').text(`${count} clicks on the button`);
-}
-
-// Debounced version of updateCounter function
-const debouncedUpdateCounter = _.debounce(updateCounter, 500); // Adjust the debounce delay as per your requirement
-
-
 $(document).ready(function() {
     // Add elements to the DOM
     $('body').append('<p>Holberton Dashboard</p>');
@@ -22,7 +9,15 @@ $(document).ready(function() {
     $('body').append('<p id="count"></p>');
     $('body').append('<p>Copyright - Holberton School</p>');
 
-    $('#start-btn').on('click', function() {
-        debouncedUpdateCounter();
+    const updateCounter = () => {
+      let times = $('#count').html() || 0;
+      $('button').on('click', () => {
+        times++;
+        $('#count').html(`${times} clicks on the button`);
+  });
+};
+
+_.debounce(updateCounter, 500);
+updateCounter();
     });
 });
