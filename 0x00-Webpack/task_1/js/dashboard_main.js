@@ -11,7 +11,7 @@ function updateCounter() {
 }
 
 // Debounced version of updateCounter function
-const debouncedUpdateCounter = _.debounce(updateCounter, 1000); // Adjust the debounce delay as per your requirement
+const debouncedUpdateCounter = _.debounce(updateCounter, 500); // Adjust the debounce delay as per your requirement
 
 
 $(document).ready(function() {
